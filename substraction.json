@@ -1,0 +1,26 @@
+{
+    "init_tape":"111-11",
+    "states": ["q0", "q1", "q2", "q3", "q4", "q5"],
+    "inputAlphabet": ["1", "-"],
+    "tapeAlphabet": ["1", "-", "X", "B"],
+    "initialState": "q0",
+    "acceptance": ["q5"],
+    "transitions": [
+        {"currentState": "q0", "tapeInput": "1", "writeTape": "1", "direction": "R", "nextState": "q0"},
+        {"currentState": "q0", "tapeInput": "-", "writeTape": "-", "direction": "R", "nextState": "q1"},
+        {"currentState": "q1", "tapeInput": "1", "writeTape": "X", "direction": "L", "nextState": "q1"},
+        {"currentState": "q1", "tapeInput": "-", "writeTape": "-", "direction": "L", "nextState": "q2"},
+        {"currentState": "q1", "tapeInput": "X", "writeTape": "X", "direction": "L", "nextState": "q1"},
+        {"currentState": "q1", "tapeInput": "B", "writeTape": "B", "direction": "L", "nextState": "q4"},
+        {"currentState": "q2", "tapeInput": "1", "writeTape": "X", "direction": "R", "nextState": "q3"},
+        {"currentState": "q2", "tapeInput": "X", "writeTape": "X", "direction": "L", "nextState": "q2"},
+        {"currentState": "q3", "tapeInput": "1", "writeTape": "X", "direction": "L", "nextState": "q1"},
+        {"currentState": "q3", "tapeInput": "-", "writeTape": "-", "direction": "R", "nextState": "q3"},
+        {"currentState": "q3", "tapeInput": "X", "writeTape": "X", "direction": "R", "nextState": "q3"},
+        {"currentState": "q3", "tapeInput": "B", "writeTape": "B", "direction": "L", "nextState": "q4"},
+        {"currentState": "q4", "tapeInput": "1", "writeTape": "1", "direction": "R", "nextState": "q4"},
+        {"currentState": "q4", "tapeInput": "-", "writeTape": "B", "direction": "L", "nextState": "q4"},
+        {"currentState": "q4", "tapeInput": "X", "writeTape": "B", "direction": "L", "nextState": "q4"},
+        {"currentState": "q4", "tapeInput": "B", "writeTape": "B", "direction": "R", "nextState": "q5"}
+    ]
+}

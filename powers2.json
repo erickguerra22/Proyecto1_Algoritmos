@@ -1,0 +1,14 @@
+{
+    "init_tape":"100000",
+    "states": ["q0", "q1", "q2"],
+    "inputAlphabet": ["1", "0"],
+    "tapeAlphabet": ["1", "0", "B"],
+    "initialState": "q0",
+    "acceptance": ["q2"],
+    "transitions": [
+        {"currentState": "q0", "tapeInput": "0", "writeTape": "0", "direction": "R", "nextState": "q0"},
+        {"currentState": "q0", "tapeInput": "1", "writeTape": "1", "direction": "R", "nextState": "q1"},
+        {"currentState": "q1", "tapeInput": "0", "writeTape": "0", "direction": "R", "nextState": "q1"},
+        {"currentState": "q1", "tapeInput": "B", "writeTape": "B", "direction": "R", "nextState": "q2"}
+    ]
+}
