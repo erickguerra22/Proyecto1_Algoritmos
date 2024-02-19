@@ -51,7 +51,7 @@ if __name__ == "__main__":
     
     w = input('Ingrese la cadena inicial: ')
     if blank:
-        w = blank * len(w)*10 + w + blank * len(w)*10
+        w = blank * len(w)*4 + w + blank * len(w)*4
     turing_machine = TuringMachine(states, input_alphabet, tape_alphabet, initial_state, acceptance, transitions, [*w, 'B'])
     
     # Verificar cadena
