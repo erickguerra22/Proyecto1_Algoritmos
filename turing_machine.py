@@ -1,6 +1,6 @@
 import json
 import sys
-
+import time
 
 class TuringMachine:
     def __init__(self, states, input_alphabet, tape_alphabet, initial_state, acceptance, transitions, tape):
@@ -55,12 +55,13 @@ if __name__ == "__main__":
     
     w = input('Ingrese la cadena inicial: ')
     if blank:
-        w = blank * len(w)*10 + w + blank * len(w)*10
+        w = blank * len(w)*30 + w + blank * len(w)*30
     turing_machine = TuringMachine(states, input_alphabet, tape_alphabet, initial_state, acceptance, transitions, [*w, 'B'])
     
     # Verificar cadena
 
     print('\nDerivación:\n')
+    start = time.time()
     result = turing_machine.run()
     print(f'\nEstado final: {turing_machine.state}')
     print(f'Cadena en la cinta: {turing_machine.tape}')
@@ -71,3 +72,4 @@ if __name__ == "__main__":
         print(f'Número resultante:\nUnario:{unaryNum}\nDecimal:{len(unaryNum)}')
     else:
         print('\nCadena no aceptada')
+    print(f'Tiempo transcurrido {time.time() - start}')
