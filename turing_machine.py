@@ -12,27 +12,21 @@ class TuringMachine:
         self.tape = tape
 
     def run(self):
-        print(self.state)
-        print(self.tape[self.position])
         transition = [t for t in transitions if t['currentState'] == self.state and t['tapeInput'] == self.tape[self.position]]
         if len(transition)>0:
             transition = transition[0]
             self.tape[self.position] = transition['writeTape'][-1]
-            if '_' not in self.tape[0]:
-                self.tape.insert(0,'_')
-            elif self.tape[len(self.tape)-2] != '_':
-                self.tape.insert(len(self.tape)-2,'_')
             derivation = ''
             for index, element in enumerate(self.tape):
                 if index == self.position:
                     derivation += '\033[94m' + element + '\033[0m'
                 else:
                     derivation += element
-            #derivation = derivation.replace('_','')
             print(derivation)
+            print(self.state)
             self.state = transition['nextState']
             if transition['direction'] == 'R': self.position += 1
-            else: self.position -= 1
+            elif transition['direction'] == 'L': self.position -= 1
             if self.run():
                 return True
         if self.state in self.acceptance:
@@ -51,10 +45,13 @@ if __name__ == "__main__":
         initial_state = data["initialState"]
         acceptance = data["acceptance"]
         transitions = data["transitions"]
+        blank = data["blank"]
 
     # Obtener input
     
-    w = data["init_tape"]
+    w = input('Ingrese la cadena inicial: ')
+    if blank:
+        w = blank * len(w)*10 + w + blank * len(w)*10
     turing_machine = TuringMachine(states, input_alphabet, tape_alphabet, initial_state, acceptance, transitions, [*w, 'B'])
     
     # Verificar cadena
@@ -63,5 +60,10 @@ if __name__ == "__main__":
     result = turing_machine.run()
     print(f'\nEstado final: {turing_machine.state}')
     print(f'Cadena en la cinta: {turing_machine.tape}')
+    #print(f'Cadena en la cinta: {turing_machine.tape}')
     if result:
-        print(f'\nÚltimo número de la serie Fibonacci calculado: {"".join("".join(turing_machine.tape).split("B")[1]).replace("_","")}\n')
+        unaryNum = "".join(turing_machine.tape).replace("_","").replace("B","")
+        print('\nCadena aceptada')
+        print(f'Número resultante:\nUnario:{unaryNum}\nDecimal:{len(unaryNum)}')
+    else:
+        print('\nCadena no aceptada')

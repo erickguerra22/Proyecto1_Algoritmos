@@ -1,5 +1,4 @@
 {
-    "init_tape":"111-11",
     "states": ["q0", "q1", "q2", "q3", "q4", "q5"],
     "inputAlphabet": ["1", "-"],
     "tapeAlphabet": ["1", "-", "X", "B"],
