@@ -1,4 +1,6 @@
 import json
+import sys
+
 
 class TuringMachine:
     def __init__(self, states, input_alphabet, tape_alphabet, initial_state, acceptance, transitions, tape):
@@ -35,8 +37,10 @@ class TuringMachine:
 
 if __name__ == "__main__":
     
-    # Obtener componentes para la máquina
+    # Definir límite de recursión
+    sys.setrecursionlimit(1000000000)
     
+    # Obtener componentes para la máquina
     with open('fibonacci.json') as json_file:
         data = json.load(json_file)
         states = data["states"]
@@ -51,7 +55,7 @@ if __name__ == "__main__":
     
     w = input('Ingrese la cadena inicial: ')
     if blank:
-        w = blank * len(w)*4 + w + blank * len(w)*4
+        w = blank * len(w)*10 + w + blank * len(w)*10
     turing_machine = TuringMachine(states, input_alphabet, tape_alphabet, initial_state, acceptance, transitions, [*w, 'B'])
     
     # Verificar cadena
